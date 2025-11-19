@@ -2,6 +2,8 @@ import pygame
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT
 from logger import log_state
 from player import Player
+from asteroid import Asteroid
+from astroidfield import AsteroidField
 
 def main():
      
@@ -11,12 +13,15 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
     
+    asteroids = pygame.sprite.Group()
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     Player.containers = (updatable, drawable)
+    Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = (updatable)
 
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2) # Create player at center of screen
-
+    asteroid_field = AsteroidField() # Create asteroid field
 
 
 
