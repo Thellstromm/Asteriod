@@ -4,6 +4,8 @@ from logger import log_state
 from player import Player
 from asteroid import Asteroid
 from astroidfield import AsteroidField
+from logger import log_event
+import sys
 
 def main():
      
@@ -36,6 +38,11 @@ def main():
         updatable.update(dt) # Update the player state
         for sprite in drawable:
           sprite.draw(screen) # Draw the player
+        for astriod in asteroids:
+            if player.collide_with(astriod):
+                log_event("player_hit")
+                print("Game Over!")
+                sys.exit()
 
         pygame.display.flip() # Update the full display surface to the screen
         dt = clock.tick(60) / 1000  # Amount of seconds between each loop
