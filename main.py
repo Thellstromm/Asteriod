@@ -1,6 +1,7 @@
 import pygame
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT
 from logger import log_state
+from player import Player
 
 def main():
      
@@ -9,6 +10,15 @@ def main():
 
     clock = pygame.time.Clock()
     dt = 0
+    
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    Player.containers = (updatable, drawable)
+
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2) # Create player at center of screen
+
+
+
 
 
     while True: # Main game loop
@@ -17,6 +27,11 @@ def main():
             if event.type == pygame.QUIT:
                 return
         screen.fill("black") # Clear the screen with black color
+
+        updatable.update(dt) # Update the player state
+        for sprite in drawable:
+          sprite.draw(screen) # Draw the player
+
         pygame.display.flip() # Update the full display surface to the screen
         dt = clock.tick(60) / 1000  # Amount of seconds between each loop
          # print(dt)
