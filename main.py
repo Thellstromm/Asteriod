@@ -6,27 +6,31 @@ from asteroid import Asteroid
 from astroidfield import AsteroidField
 from logger import log_event
 import sys
+from shot import Shot
 
 def main():
-     
+
+    print("Starting Asteroids with pygame version: VERSION")
+    print(f"Screen width: {SCREEN_WIDTH}")
+    print(f"Screen height: {SCREEN_HEIGHT}") 
+
     pygame.init() # Initialize pygame
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) # Set screen size
 
     clock = pygame.time.Clock()
     dt = 0
-    
+
+    shots = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     Player.containers = (updatable, drawable)
     Asteroid.containers = (asteroids, updatable, drawable)
     AsteroidField.containers = (updatable)
+    Shot.containers = (shots, updatable, drawable)
 
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2) # Create player at center of screen
     asteroid_field = AsteroidField() # Create asteroid field
-
-
-
 
     while True: # Main game loop
         log_state() # Log the game state
@@ -43,14 +47,18 @@ def main():
                 log_event("player_hit")
                 print("Game Over!")
                 sys.exit()
+        for shot in shots:
+            for astriod in asteroids:
+                if shot.collide_with(astriod):
+                    log_event("asteroid_shot")
+                    astriod.kill()
+                    shot.kill()
 
         pygame.display.flip() # Update the full display surface to the screen
         dt = clock.tick(60) / 1000  # Amount of seconds between each loop
-         # print(dt)
+    
 
-    print("Starting Asteroids with pygame version: VERSION")
-    print(f"Screen width: {SCREEN_WIDTH}")
-    print(f"Screen height: {SCREEN_HEIGHT}")
+
 
 
 if __name__ == "__main__":
