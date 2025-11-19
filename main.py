@@ -51,7 +51,7 @@ def main():
             for astriod in asteroids:
                 if shot.collide_with(astriod):
                     log_event("asteroid_shot")
-                    astriod.kill()
+                    astriod.split()
                     shot.kill()
 
         pygame.display.flip() # Update the full display surface to the screen
