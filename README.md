@@ -1,15 +1,15 @@
-## Asteroids Game 🚀
+# Asteroids Game 🚀
 
 Classic arcade-style Asteroids implemented in Python using Pygame. Pilot your spaceship, destroy asteroids, and survive as long as possible!
 
-# 🎮 Controls
+## 🎮 Controls
 Action	Key
 Rotate Left	A
 Rotate Right	D
 Move Forward	W
 Move Backward	S
 Shoot	SPACEBAR
-🪐 Features
+## 🪐 Features
 
 Large asteroids split into smaller, faster asteroids
 
@@ -23,7 +23,7 @@ Collision detection between player and asteroids
 
 Event logging for "player_hit" and "asteroid_split"
 
-#⚡ Quick Start
+##⚡ Quick Start
 git clone <repository-url>
 cd asteroids-game
 python -m venv .venv
@@ -32,7 +32,7 @@ source .venv/bin/activate   # Linux/macOS
 pip install pygame
 python main.py
 
-# 🗂️ File Structure
+## 🗂️ File Structure
 
 main.py – Game initialization and main loop
 
@@ -48,7 +48,7 @@ constants.py – Game constants (speeds, screen size, colors)
 
 logger.py – Event logging
 
-# 📌 Notes
+## 📌 Notes
 
 Uses pygame.Vector2 for movement and collision calculations
 
@@ -56,6 +56,6 @@ Shooting and movement are time-based (dt) for consistent gameplay
 
 Asteroids split into random directions when destroyed
 
-# 📜 License
+## 📜 License
 
-Educational project – free to use and modify for learning purposes.
+Educational project – free to use and modify for learning purposes. made with boot.dev course
